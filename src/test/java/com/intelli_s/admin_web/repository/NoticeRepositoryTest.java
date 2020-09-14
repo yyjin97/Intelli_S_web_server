@@ -16,10 +16,8 @@ class NoticeRepositoryTest {
     NoticeRepository repository;
 
     @Test
-    public void testGetAllById() {
-        int id = 1;
-
-        repository.getAllById(id).forEach(System.out::println);
+    public void testGetList() {
+        repository.getList().forEach(System.out::println);
     }
 
     @Test
@@ -30,11 +28,23 @@ class NoticeRepositoryTest {
     }
 
     @Test
+    public void testUpdateNotice() {
+        NoticeVO noticeVO = repository.getById(1);
+        Date now = new Date();
+
+        noticeVO.setTitle("새 제목");
+        noticeVO.setContent("변경 후 내용입니다");
+        noticeVO.setUpdate_time(now);
+
+        log.info(repository.updateNotice(noticeVO));
+    }
+
+    @Test
     public void testSave() {
         NoticeVO noticeVO = new NoticeVO();
         Date date = new Date();
 
-        noticeVO.setId(1);
+        noticeVO.setId(0);
         noticeVO.setTitle("title");
         noticeVO.setContent("content!");
         noticeVO.setWriter("writer");
