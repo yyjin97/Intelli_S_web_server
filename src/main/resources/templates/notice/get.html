@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<title>공지사항</title>
+
+<th:block layout:fragment="content">
+    <div class="container">
+        <section>
+            <h2><strong>[[${notice.title}]]</strong></h2>
+            <h3 class="float-right">January 1, 2014</h3>
+
+            <hr>
+            <div th:text="${notice.content}"></div>
+        </section>
+    </div>
+</th:block>
+
+</html>

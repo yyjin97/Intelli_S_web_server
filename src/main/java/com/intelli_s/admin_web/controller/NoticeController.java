@@ -25,10 +25,25 @@ public class NoticeController {
     @GetMapping("/list/{bno}")
     public String list(@PathVariable("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) {
         log.info("get notice list of building #" + bno);
+
         model.addAttribute("bno", bno);
         model.addAttribute("list", noticeService.getList(cri, bno));
         model.addAttribute("pageInfo", new PageDTO(cri, noticeService.getCntByBno(bno)));
+
         return "/notice/list";
+    }
+
+    @GetMapping("/get/{bno}")
+    public String get(@PathVariable("bno") int bno, @ModelAttribute("cri") Criteria cri, int id, Model model) {
+
+        if(id <= 0) {
+            log.info("Invalid notice id!");
+            return null;
+        }
+
+        log.info("get notice #" + id);
+        model.addAttribute("notice", noticeService.get(id));
+        return "/notice/get";
     }
 
 }

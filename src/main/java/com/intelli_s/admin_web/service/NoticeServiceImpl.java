@@ -5,6 +5,7 @@ import com.intelli_s.admin_web.domain.NoticeVO;
 import com.intelli_s.admin_web.repository.NoticeRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Date;
 import java.util.List;
