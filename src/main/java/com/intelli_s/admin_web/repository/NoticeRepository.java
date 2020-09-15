@@ -10,10 +10,13 @@ import java.util.List;
 
 public interface NoticeRepository extends Repository<NoticeVO, Integer> {
 
-    @Query("SELECT notice FROM NoticeVO notice WHERE notice.id > 0")
-    List<NoticeVO> getList();
+    @Query(value = "SELECT * FROM notice WHERE notice.bno = :bno ORDER BY notice.id DESC LIMIT :start, :amount", nativeQuery = true)
+    List<NoticeVO> getListByBno(int bno, int start, int amount);
 
     NoticeVO getById(int id);
+
+    @Query("SELECT COUNT(notice.id) FROM NoticeVO notice WHERE notice.bno = :bno")
+    int getCntByBno(int bno);
 
     @Query("UPDATE NoticeVO notice SET notice.title = :#{#noticeVO.title}, notice.content = :#{#noticeVO.content}," +
             "notice.update_time = :#{#noticeVO.update_time} WHERE notice.id = :#{#noticeVO.id}")

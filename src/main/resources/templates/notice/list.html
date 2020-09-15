@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<title>공지사항 목록</title>
+
+<th:block layout:fragment="content">
+    <div class="container">
+        <div class="card">
+            <div class="mt-5">
+                <h2 class="text-center">
+                    Notice
+                </h2>
+            </div>
+            <div class="card-body">
+                <table class="table mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                        <th scope="col">수정일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="notice : ${list}">
+                        <th th:text="${notice.id}"></th>
+                        <td th:text="${notice.title}"></td>
+                        <td th:text="${notice.writer}"></td>
+                        <td th:text="${#dates.format(notice.reg_time, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(notice.update_time, 'yyyy-MM-dd')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-5" th:with="start=${pageInfo.startPage}, end=${pageInfo.endPage}">
+                    <ul class="pagination float-right ml-3">
+                        <li class="page-item" th:if="${pageInfo.prev}">
+                            <a class="page-link" th:href="@{/notice/list/{bno} (bno=${bno}, pageNum=${pageInfo.startPage - 1}, amount=${pageInfo.cri.amount})}">Prev</a>
+                        </li>
+
+                        <li class="page-item" th:classappend="${page eq pageInfo.cri.pageNum} ? active" th:each="page: ${#numbers.sequence(start, end)}">
+                            <a class="page-link" th:href="@{/notice/list/{bno} (bno=${bno}, pageNum=${page}, amount=${pageInfo.cri.amount})}" th:text="${page}"></a>
+                        </li>
+
+                        <li class="page-item" th:if="${pageInfo.next}">
+                            <a class="page-link" th:href="@{/notice/list/{bno} (bno=${bno}, pageNum=${pageInfo.endPage + 1}, amount=${pageInfo.cri.amount})}">Next</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

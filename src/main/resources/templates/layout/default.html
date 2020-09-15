@@ -4,6 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 
     <head>
+        <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Intelli_S</title>
         <th:block th:replace="~{fragment/head::headFragment}"></th:block>
     </head>
 

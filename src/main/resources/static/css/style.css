@@ -515,11 +515,20 @@ body.mobile-nav-active #mobile-nav-toggle {
   margin-bottom: 45px;
 }
 
+.card h2 {
+  color: #199EB8;
+  font-size: 250%;
+}
+
 /* ==================================================
   Features Styling
   ================================================== */
 .features {
   padding-bottom: 45px;
+}
+
+.features h1 {
+  color: #199EB8;
 }
 
 .features h2 {
@@ -599,7 +608,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .portfolio h2 {
-  color: #199EB8;
+  color: #199eb8;
   margin-bottom: 25px;
 }
 

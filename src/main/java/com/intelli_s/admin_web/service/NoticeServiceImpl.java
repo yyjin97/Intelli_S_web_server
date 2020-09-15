@@ -1,5 +1,6 @@
 package com.intelli_s.admin_web.service;
 
+import com.intelli_s.admin_web.domain.Criteria;
 import com.intelli_s.admin_web.domain.NoticeVO;
 import com.intelli_s.admin_web.repository.NoticeRepository;
 import lombok.extern.log4j.Log4j2;
@@ -30,9 +31,18 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    public List<NoticeVO> getList() {
-        log.info("get notice list !");
-        return repository.getList();
+    public List<NoticeVO> getList(Criteria cri, int bno) {
+        int amount = cri.getAmount();
+        int start = (cri.getPageNum() - 1) * amount;
+
+        log.info("get notice list with cri: " + cri);
+
+        return repository.getListByBno(bno, start, amount);
+    }
+
+    @Override
+    public int getCntByBno(int bno) {
+        return repository.getCntByBno(bno);
     }
 
     @Override

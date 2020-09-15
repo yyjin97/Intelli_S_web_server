@@ -16,11 +16,6 @@ class NoticeRepositoryTest {
     NoticeRepository repository;
 
     @Test
-    public void testGetList() {
-        repository.getList().forEach(System.out::println);
-    }
-
-    @Test
     public void testGetById() {
         int id = 1;
 
@@ -48,7 +43,7 @@ class NoticeRepositoryTest {
         noticeVO.setTitle("title");
         noticeVO.setContent("content!");
         noticeVO.setWriter("writer");
-        noticeVO.setBuilding_id(1);
+        noticeVO.setBno(1);
         noticeVO.setReg_time(date);
         noticeVO.setUpdate_time(date);
 

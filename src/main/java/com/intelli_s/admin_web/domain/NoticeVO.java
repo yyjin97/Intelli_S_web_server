@@ -22,7 +22,7 @@ public class NoticeVO {
 
     private String writer;
 
-    private Integer building_id;
+    private Integer bno;
 
     private Date reg_time;
 
@@ -35,7 +35,7 @@ public class NoticeVO {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", writer='" + writer + '\'' +
-                ", building_id=" + building_id +
+                ", bno=" + bno +
                 ", reg_time=" + reg_time +
                 ", update_time=" + update_time +
                 '}';
