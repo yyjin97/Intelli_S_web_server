@@ -45,16 +45,16 @@ a {
   Elements
   ================================================== */
 .btn {
+  border-color: #199EB8;
   background-color: #199EB8;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 800;
   color: #fff;
-  padding: 15px 45px;
-  border-radius: 50px;
+  padding: 8px 25px;
 }
 
 .btn:hover {
-  background-color: #E04F00;
+  background-color: #197993;
   color: #fff;
 }
 
@@ -86,7 +86,7 @@ section {
 }
 
 a:hover {
-  text-decoration: none !important;
+  /*text-decoration: none !important;*/
 }
 
 .scrolltop {
@@ -518,6 +518,19 @@ body.mobile-nav-active #mobile-nav-toggle {
 .card h2 {
   color: #199EB8;
   font-size: 250%;
+}
+
+.text-over:link {
+  color: black !important;
+}
+
+.text-over:visited {
+  color: black !important;
+}
+
+.text-over:hover {
+  color: #199EB8 !important;
+  text-underline: #199EB8 !important;
 }
 
 /* ==================================================

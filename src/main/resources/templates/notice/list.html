@@ -15,7 +15,7 @@
                 </h2>
             </div>
             <div class="card-body">
-                <table class="table mb-4">
+                <table class="table table-hover mb-4">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -26,9 +26,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="notice : ${list}">
-                        <th th:text="${notice.id}"></th>
-                        <td th:text="${notice.title}"></td>
+                    <tr class="text-over" id="noticeTbl" th:each="notice : ${list}">
+                        <th id="noticeId" th:text="${notice.id}"></th>
+                        <td><a class="text-over" th:href="@{/notice/get/{id} (id=${notice.id})}">[[${notice.title}]]</a></td>
                         <td th:text="${notice.writer}"></td>
                         <td th:text="${#dates.format(notice.reg_time, 'yyyy-MM-dd')}"></td>
                         <td th:text="${#dates.format(notice.update_time, 'yyyy-MM-dd')}"></td>
@@ -54,5 +54,17 @@
             </div>
         </div>
     </div>
+
+    <form id="actionForm" method="get" action="notice/get">
+        <input type="hidden" th:value="${pageInfo.cri.amount}">
+        <input type="hidden" th:value="${pageInfo.cri.pageNum}">
+    </form>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script>
+        $(document).ready(function () {
+        })
+    </script>
 </th:block>
 </html>

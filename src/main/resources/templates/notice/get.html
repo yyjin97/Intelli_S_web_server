@@ -4,17 +4,29 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="~{layout/default}">
 
-<title>공지사항</title>
+<title>Notice</title>
 
 <th:block layout:fragment="content">
-    <div class="container">
-        <section>
-            <h2><strong>[[${notice.title}]]</strong></h2>
-            <h3 class="float-right">January 1, 2014</h3>
-
+    <div class="container col-lg-8">
+        <div class="card my-4">
+            <!-- Title -->
+            <p style="font-size: 280%" class="card-title mt-4">[[${notice.title}]]</p>
+            <!-- Author -->
+            <div><p class="pull-right lead">by [[${notice.writer}]]</p></div>
+            <!-- Date/Time -->
+            <div><div class="float-right">Posted on January 1, 2019 at 12:00 PM</div></div>
             <hr>
-            <div th:text="${notice.content}"></div>
-        </section>
+
+<!--            &lt;!&ndash; Preview Image &ndash;&gt;-->
+<!--            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">-->
+
+<!--            <hr>-->
+
+            <!-- Post Content -->
+            <div class="lead" th:text="${notice.content}"></div>
+            <hr>
+            <div><button class="btn float-right"> 목록 </button></div>
+        </div>
     </div>
 </th:block>
 

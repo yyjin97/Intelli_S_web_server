@@ -33,8 +33,8 @@ public class NoticeController {
         return "/notice/list";
     }
 
-    @GetMapping("/get/{bno}")
-    public String get(@PathVariable("bno") int bno, @ModelAttribute("cri") Criteria cri, int id, Model model) {
+    @GetMapping("/get/{id}")
+    public String get(@PathVariable("id") int id, @ModelAttribute("cri") Criteria cri, Model model) {
 
         if(id <= 0) {
             log.info("Invalid notice id!");
