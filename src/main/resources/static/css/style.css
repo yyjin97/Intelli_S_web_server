@@ -15,6 +15,13 @@ p {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
 }
 
+pre {
+  line-height: 1.55;
+  color: #333;
+  font-size: 400;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+}
+
 h1 {
   font-size: 62px;
 }
@@ -44,11 +51,25 @@ a {
 /* ==================================================
   Elements
   ================================================== */
+.btn-reverse {
+  border-color: #199EB8 !important;
+  background-color: #ffffff !important;
+  font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+  font-weight: 500 !important;
+  color: #199EB8 !important;
+  padding: 8px 20px;
+}
+
+.btn-reverse:hover {
+  background-color: #199EB8 !important;
+  color: #fff !important;
+}
+
 .btn {
   border-color: #199EB8;
   background-color: #199EB8;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 800;
+  font-weight: 500;
   color: #fff;
   padding: 8px 25px;
 }

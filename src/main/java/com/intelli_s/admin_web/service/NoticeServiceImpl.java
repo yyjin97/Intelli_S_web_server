@@ -61,14 +61,14 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    public boolean register(NoticeVO noticeVO) {
+    public void register(NoticeVO noticeVO) {
         Date now = new Date();
 
+        noticeVO.setId(0);
         noticeVO.setReg_time(now);
         noticeVO.setUpdate_time(now);
 
         log.info("register notice !");
         repository.save(noticeVO);
-        return true;
     }
 }

@@ -15,5 +15,5 @@ public interface NoticeService {
 
     boolean modify(NoticeVO noticeVO);
 
-    boolean register(NoticeVO noticeVO);
+    void register(NoticeVO noticeVO);
 }

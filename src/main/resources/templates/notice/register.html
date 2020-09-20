@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<th:block layout:fragment="content">
+    <div class="container">
+        <div class="card">
+            <div class="mt-5">
+                <h2 class="text-center">
+                    Register Notice
+                </h2>
+            </div>
+            <form id="actionForm" class="mb-lg-5" role="form" method="post" th:action="@{/notice/register}">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea name="content" class="form-control" rows="10" placeholder="Enter content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="writer">Writer</label>
+                        <input class="form-control" id="writer" name="writer">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button id="submitBtn" type="button" class="btn">Submit</button>
+                    <a type="button" class="btn" th:href="@{/notice/list/{bno} (bno=${bno})}">Cancel</a>
+                </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <input type="hidden" name="bno" th:value="${bno}">
+            </form>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script>
+        $(document).ready(function () {
+            const actionForm = $("#actionForm");
+
+            $("#submitBtn").on("click", function (e) {
+                const title = actionForm.find("input[name='title']").val();
+                const content = actionForm.find("textarea[name='content']").val();
+
+                if(title == "" || content == "") {
+                    alert("공지사항의 제목과 내용을 입력해주세요 !");
+                    return;
+                }
+
+                actionForm.submit();
+            })
+        })
+    </script>
+</th:block>
+</html>

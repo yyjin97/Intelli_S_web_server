@@ -14,20 +14,33 @@
             <!-- Author -->
             <div><p class="pull-right lead">by [[${notice.writer}]]</p></div>
             <!-- Date/Time -->
-            <div><div class="float-right">Posted on January 1, 2019 at 12:00 PM</div></div>
+            <div><div class="pull-right lead" th:text="${#dates.format(notice.reg_time, 'yyyy-MM-dd HH:mm:SS')}"></div></div>
             <hr>
-
-<!--            &lt;!&ndash; Preview Image &ndash;&gt;-->
-<!--            <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">-->
-
-<!--            <hr>-->
 
             <!-- Post Content -->
-            <div class="lead" th:text="${notice.content}"></div>
+            <div><pre class="lead card-text">[[${notice.content}]]</pre></div>
             <hr>
-            <div><button class="btn float-right"> 목록 </button></div>
+            <div><button id="listBtn" class="btn float-right"> 목록 </button></div>
         </div>
     </div>
+
+    <form id="actionForm" method="get" th:action="@{/notice/list/{bno} (bno=${notice.bno})}">
+        <input type="hidden" name="pageNum" th:value="${cri.pageNum}">
+        <input type="hidden" name="amount" th:value="${cri.amount}">
+    </form>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script>
+        $(document).ready(function () {
+            const actionForm = $("#actionForm");
+
+            $("#listBtn").on("click", function (e) {
+                e.preventDefault();
+                actionForm.submit();
+            })
+        })
+    </script>
 </th:block>
 
 </html>
