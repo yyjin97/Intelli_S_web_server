@@ -54,7 +54,7 @@ public class NoticeController {
     }
 
     @PostMapping("/register")
-    public String postRegister(NoticeVO notice, String msg, RedirectAttributes rttr) {
+    public String postRegister(NoticeVO notice, RedirectAttributes rttr) {
         noticeService.register(notice);
 
         rttr.addAttribute("msg", "공지사항 등록 완료!");
