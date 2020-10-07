@@ -55,7 +55,7 @@ public class NoticeServiceImpl implements NoticeService{
 
         Date now = new Date();
 
-        noticeVO.setUpdate_time(now);
+        noticeVO.setUpdateTime(now);
         log.info("modify notice #" + noticeVO.getId());
         return repository.updateNotice(noticeVO) == 1;
     }
@@ -65,8 +65,8 @@ public class NoticeServiceImpl implements NoticeService{
         Date now = new Date();
 
         noticeVO.setId(0);
-        noticeVO.setReg_time(now);
-        noticeVO.setUpdate_time(now);
+        noticeVO.setRegTime(now);
+        noticeVO.setUpdateTime(now);
 
         log.info("register notice !");
         repository.save(noticeVO);

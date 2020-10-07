@@ -19,7 +19,7 @@ public interface NoticeRepository extends Repository<NoticeVO, Integer> {
     int getCntByBno(int bno);
 
     @Query("UPDATE NoticeVO notice SET notice.title = :#{#noticeVO.title}, notice.content = :#{#noticeVO.content}," +
-            "notice.update_time = :#{#noticeVO.update_time} WHERE notice.id = :#{#noticeVO.id}")
+            "notice.updateTime = :#{#noticeVO.update_time} WHERE notice.id = :#{#noticeVO.id}")
     @Transactional
     @Modifying
     int updateNotice(NoticeVO noticeVO);

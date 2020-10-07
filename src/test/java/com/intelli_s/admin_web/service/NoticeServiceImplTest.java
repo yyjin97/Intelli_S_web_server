@@ -32,8 +32,8 @@ class NoticeServiceImplTest {
         noticeVO.setContent("new content");
         noticeVO.setWriter("writer1");
         noticeVO.setBno(2);
-        noticeVO.setReg_time(now);
-        noticeVO.setUpdate_time(now);
+        noticeVO.setRegTime(now);
+        noticeVO.setUpdateTime(now);
 
         noticeService.register(noticeVO);
     }

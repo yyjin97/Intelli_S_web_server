@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AppBeaconController {
 
     @PostMapping("/open")
-    public void openDoor(@RequestBody int minor) {
+    public void openDoor(@RequestBody String minor) {
+
     }
 }

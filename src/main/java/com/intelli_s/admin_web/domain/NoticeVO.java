@@ -3,6 +3,7 @@ package com.intelli_s.admin_web.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -24,9 +25,11 @@ public class NoticeVO {
 
     private Integer bno;
 
-    private Date reg_time;
+    @Column(name = "reg_time")
+    private Date regTime;
 
-    private Date update_time;
+    @Column(name = "update_time")
+    private Date updateTime;
 
     @Override
     public String toString() {
@@ -36,8 +39,8 @@ public class NoticeVO {
                 ", content='" + content + '\'' +
                 ", writer='" + writer + '\'' +
                 ", bno=" + bno +
-                ", reg_time=" + reg_time +
-                ", update_time=" + update_time +
+                ", regTime=" + regTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

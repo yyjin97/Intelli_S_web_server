@@ -29,7 +29,7 @@ class NoticeRepositoryTest {
 
         noticeVO.setTitle("새 제목");
         noticeVO.setContent("변경 후 내용입니다");
-        noticeVO.setUpdate_time(now);
+        noticeVO.setUpdateTime(now);
 
         log.info(repository.updateNotice(noticeVO));
     }
@@ -44,8 +44,8 @@ class NoticeRepositoryTest {
         noticeVO.setContent("content!");
         noticeVO.setWriter("writer");
         noticeVO.setBno(1);
-        noticeVO.setReg_time(date);
-        noticeVO.setUpdate_time(date);
+        noticeVO.setRegTime(date);
+        noticeVO.setUpdateTime(date);
 
         repository.save(noticeVO);
     }
