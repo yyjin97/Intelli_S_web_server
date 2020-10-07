@@ -11,26 +11,22 @@
 
     <script>
         $(document).ready(function () {
-            // handshake
-            const sock = new SockJS("/rpi/door");
-            console.log("sock");
-
-            // onopen : connection이 맺어졌을 때의 callback
-            sock.onopen = function () {
-                // send : connection으로 message를 전달
-                // connection이 맺어진 후 가입(JOIN) 메시지를 전달
-                sock.send(JSON.stringify({msg:"onopen > send"}));
-
-                // onmessage : message를 받았을 때의 callback
-                sock.onmessage = function (e) {
-                    console.log("onopen > onmessage");
-                }
-            }
 
             const sendBtn = $("#btn");
             sendBtn.on("click", function (e) {
                 console.log("click!");
-                sock.send(JSON.stringify({msg:"send"}));
+                $.ajax({
+                    url: 'http://192.168.137.1:8080/app/beacon/open',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: '{ major:1, minor:22 }',
+                    dataType: 'json',
+                    success: function(response) {
+                        const result = JSON.parse(JSON.stringify(response));
+                        alert(result);
+                    }
+                });
+
             });
         })
     </script>

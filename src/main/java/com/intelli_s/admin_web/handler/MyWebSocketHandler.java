@@ -46,13 +46,19 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
     }
 
     //Server to Client
-    public void send(Integer bno, Integer rno) {
+    public Boolean send(Integer bno, Integer rno) {
         WebSocketSession session = map.get(bno);
+        if(session == null) {
+            log.warn("등록되지 않은 bno/rno 입니다");
+            return false;
+        }
+
         try{
             log.info("Web socket 전송: bno=" + bno + " rno=" + rno);
             session.sendMessage(new TextMessage(bno+","+rno));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
 }
