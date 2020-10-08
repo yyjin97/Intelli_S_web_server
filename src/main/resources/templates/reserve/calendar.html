@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<title>Calendar</title>
+
+<th:block layout:fragment="css">
+    <link th:href="@{/fullcalendar/fullcalendar.css}" rel="stylesheet">
+    <link th:href="@{/fullcalendar/daygrid.css}" rel="stylesheet">
+    <link th:href="@{/fullcalendar/timegrid.css}" rel="stylesheet">
+</th:block>
+
+<th:block layout:fragment="content">
+    <div class="container col-lg-9">
+        <div class="card my-4">
+            <div id="calendar"></div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/fullcalendar/fullcalendar.js}"></script>
+    <script type="text/javascript" th:src="@{/fullcalendar/daygrid.js}"></script>
+    <script type="text/javascript" th:src="@{/fullcalendar/timegrid.js}"></script>
+    <script type="text/javascript" th:src="@{/fullcalendar/interaction.js}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+
+            const calendar = new FullCalendar.Calendar(calendarEl,{
+                plugins: ['interaction', 'dayGrid', 'timeGrid'],
+                header: {
+                    left: 'prevYear,prev,next,nextYear today',
+                    center: 'title',
+                    right: ''
+                },
+                editable: false,
+                events: function (date, callback, error) {
+                    $.ajax({
+                        url:'reserve/list',
+                        type:'get',
+                        data:{
+                            start: date['startStr'],
+                            end: date['endStr']
+                        },
+                        success:function (list){
+                            calendar.removeAllEvents();
+                            $.each(list, function (index, item) {
+                                if(item['allDay'] == 'false')
+                                    item['allDay'] = false;
+                                else
+                                    item['allDay'] = true;
+                                calendar.addEvent(item);
+                            });
+                            callback(list);
+                        }
+                    });
+                },
+                defaultView: 'timeGridWeek',
+                defaultDate: new Date(),
+                eventLimit: true,
+                locale: 'ko',
+                eventColor:'#51bacf',
+                eventTextColor: '#fff'
+            });
+            calendar.render();
+        });
+    </script>
+</th:block>
+</html>

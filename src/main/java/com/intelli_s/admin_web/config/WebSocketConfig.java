@@ -1,7 +1,6 @@
 package com.intelli_s.admin_web.config;
 
 import com.intelli_s.admin_web.handler.MyWebSocketHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;

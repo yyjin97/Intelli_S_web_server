@@ -31,8 +31,8 @@
                         <th id="noticeId" th:text="${notice.id}"></th>
                         <td><a class="text-over move" th:href="@{/notice/get/{id} (id=${notice.id})}">[[${notice.title}]]</a></td>
                         <td th:text="${notice.writer}"></td>
-                        <td th:text="${#dates.format(notice.reg_time, 'yyyy-MM-dd')}"></td>
-                        <td th:text="${#dates.format(notice.update_time, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(notice.regTime, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(notice.updateTime, 'yyyy-MM-dd')}"></td>
                     </tr>
                     </tbody>
                 </table>
