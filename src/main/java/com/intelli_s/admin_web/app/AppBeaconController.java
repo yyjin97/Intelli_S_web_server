@@ -27,7 +27,7 @@ public class AppBeaconController {
     }
 
     @PostMapping(value = "/open", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RoomVO> openDoor(@RequestBody BeaconVO beacon) {
+    public ResponseEntity<RoomVO> openRoom(@RequestBody BeaconVO beacon) {
         int major = beacon.getMajor();
         int minor = beacon.getMinor();
 

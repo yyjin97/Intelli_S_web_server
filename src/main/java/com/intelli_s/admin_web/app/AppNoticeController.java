@@ -23,7 +23,7 @@ public class AppNoticeController {
     }
 
     @GetMapping(value = "/list/{bno}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<NoticeVO>> getList(@PathVariable("bno") int bno, @RequestParam("page") int page) {
+    public @ResponseBody ResponseEntity<List<NoticeVO>> getList(@PathVariable("bno") int bno, @RequestParam("page") int page) {
         if(bno <= 0) {
             log.warn("Invalid notice bno !");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

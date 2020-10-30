@@ -5,6 +5,7 @@ import com.intelli_s.admin_web.domain.ReservationVO;
 import com.intelli_s.admin_web.service.ReservationService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,32 @@ public class ReservationController {
 
         log.info(map);
         return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> registerReservation(@RequestBody ReservationVO reserve) {
+
+        if(service.checkReservation(reserve.getDay(), reserve.getStart(), reserve.getEnd())) {
+            log.info("이미 예약이 존재합니다 " + reserve.getDay() + " " + reserve.getStart() + " ~ " + reserve.getEnd());
+            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+        }
+
+        reserve.setUserId("TempUser!"); //////수정필요!!!!!!!!!!
+        reserve.setReserveId(0);
+        service.register(reserve);
+        log.info(reserve.getDay() + " " + reserve.getStart() + " ~ " + reserve.getEnd() + " 예약 완료!");
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/cancel", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> cancelReservation(@RequestParam Integer id) {
+
+        if(id == null || service.getCntById(id) == 0) {
+            log.info("Id가 존재하지 않습니다.");
+            return new ResponseEntity<>("fail", HttpStatus.BAD_REQUEST);
+        }
+
+        service.remove(id);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 }

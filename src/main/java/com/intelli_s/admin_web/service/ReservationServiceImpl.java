@@ -5,9 +5,6 @@ import com.intelli_s.admin_web.repository.ReservationRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +22,25 @@ public class ReservationServiceImpl implements ReservationService{
     public List<ReservationVO> getListByDay(String start, String end) {
         log.info("Get reservation " + start + "~" + end);
         return repository.getListByDay(start, end);
+    }
+
+    //return 값이 true 이면 이미 예약이 존재, false 이면 예약이 없는 경우
+    @Override
+    public Boolean checkReservation(String day, String start, String end) {
+        log.info("Check reservation " + day + " " + start + " ~ " + end);
+        return repository.getCntByDay(day, start, end) > 0;
+    }
+
+    @Override
+    public int getCntById(Integer id) {
+        log.info("Get Count By #" + id);
+        return repository.getCntById(id);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        log.info("Delete Reservation #" + id);
+        repository.removeByReserveId(id);
     }
 
     @Override

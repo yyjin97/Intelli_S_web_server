@@ -39,4 +39,14 @@ class ReservationRepositoryTest {
 
         repository.save(reservation);
     }
+
+    @Test
+    public void testGetCnt() {
+        log.info(repository.getCntByDay("2020/10/10", "07:30:00","08:30:00"));
+    }
+
+    @Test
+    public void testRemove() {
+        repository.removeByReserveId(8);
+    }
 }
