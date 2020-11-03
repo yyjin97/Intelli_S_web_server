@@ -15,7 +15,7 @@ public class PushNotifications {
     public static String NotificationJson() throws JSONException {
         LocalDate localDate = LocalDate.now();
 
-        String sampleData[] = {"dWKiPqdsSmGVpfvTKm9tzj:APA91bG5ShgfKI_l_t7Qa31ntxstsJ-sIZPadnDqr1rRWJV6PIGXtlXwv43j2OGx6znID_7I3teYLEdfCSbJY6pNFd8QBHeOVCk_5LTLMa7WP93HtuoEwF1HkxkVz93cgjtEgHft16HI"};
+        String sampleData[] = {"dWKiPqdsSmGVpfvTKm9tzj:APA91bHYrf-3XVIkQDiPNomBU5bhPBXPj4E4fKwZmA2CxHGJSyn6rvk9PHHiJRiGkjKHNuXxXb0U72wmwZUtjT1NM2eXxPHlkdhbJizXpqBDgnF0P8HFYUeZZgzjcNMY4yVZ9HSeRJ2G"};
 
         JSONObject body = new JSONObject();
 

@@ -1,5 +1,6 @@
 package com.intelli_s.admin_web.app;
 
+import com.intelli_s.admin_web.domain.AppReserveDTO;
 import com.intelli_s.admin_web.domain.FullCalendarDTO;
 import com.intelli_s.admin_web.domain.ReservationVO;
 import com.intelli_s.admin_web.service.ReservationService;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,20 @@ public class ReservationController {
 
     public ReservationController(ReservationService service) {
         this.service = service;
+    }
+
+    @GetMapping(value = "/lookup", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AppReserveDTO>> appLookup(@RequestParam String day, @RequestParam Integer bno) {
+
+        List<ReservationVO> list = service.getListByDayBno(day, bno);
+        List<AppReserveDTO> appList = new ArrayList<>();
+
+        list.forEach(e -> {
+            appList.add(new AppReserveDTO(e.getTitle(), e.getUserId(), e.getDay(), Integer.parseInt(e.getStart().substring(0,2)), Integer.parseInt(e.getEnd().substring(0,2)),e.getBno(), e.getRno()));
+        });
+
+        log.info("App에 예약목록을 전송: " + day + ", bno: " + bno);
+        return new ResponseEntity<>(appList, HttpStatus.OK);
     }
 
     @GetMapping("/list")

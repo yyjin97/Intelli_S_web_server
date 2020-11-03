@@ -24,6 +24,12 @@ public class ReservationServiceImpl implements ReservationService{
         return repository.getListByDay(start, end);
     }
 
+    @Override
+    public List<ReservationVO> getListByDayBno(String day, Integer bno) {
+        log.info("Get reservation " + day);
+        return repository.getListByDayBno(day, bno);
+    }
+
     //return 값이 true 이면 이미 예약이 존재, false 이면 예약이 없는 경우
     @Override
     public Boolean checkReservation(String day, String start, String end) {

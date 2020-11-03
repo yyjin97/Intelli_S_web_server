@@ -28,6 +28,12 @@ public class AppBeaconController {
 
     @PostMapping(value = "/open", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RoomVO> openRoom(@RequestBody BeaconVO beacon) {
+
+        if(beacon == null) {
+            log.info("beacon data is NULL!");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         int major = beacon.getMajor();
         int minor = beacon.getMinor();
 

@@ -1,5 +1,6 @@
 package com.intelli_s.admin_web.repository;
 
+import com.intelli_s.admin_web.domain.AppReserveDTO;
 import com.intelli_s.admin_web.domain.ReservationVO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -12,6 +13,9 @@ public interface ReservationRepository extends Repository<ReservationVO, Integer
 
     @Query("SELECT reserve FROM ReservationVO reserve WHERE reserve.day >= :day_s and reserve.day < :day_e")
     List<ReservationVO> getListByDay(String day_s, String day_e);
+
+    @Query("SELECT reserve FROM ReservationVO reserve WHERE reserve.day = :day and reserve.bno = :bno")
+    List<ReservationVO> getListByDayBno(String day, Integer bno);
 
     @Query("SELECT COUNT(reserve) FROM ReservationVO reserve WHERE reserve.day = :day " +
             "and ((reserve.start <= :start and reserve.end > :start) or (reserve.start > :end and reserve.end >= :end))")
