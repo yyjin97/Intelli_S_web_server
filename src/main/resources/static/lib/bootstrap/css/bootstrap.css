@@ -18,7 +18,7 @@
   --white: #fff;
   --gray: #868e96;
   --gray-dark: #343a40;
-  --primary: #007bff;
+  --primary: #199EB8;
   --secondary: #868e96;
   --success: #28a745;
   --info: #17a2b8;
@@ -5761,7 +5761,7 @@ a.bg-dark:focus, a.bg-dark:hover {
 }
 
 .border-primary {
-  border-color: #007bff !important;
+  border-color: #199EB8 !important;
 }
 
 .border-secondary {

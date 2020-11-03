@@ -13,7 +13,7 @@
 </th:block>
 
 <th:block layout:fragment="content">
-    <div class="container col-lg-9">
+    <div class="container col-lg-9 mt-5">
         <div class="card my-4">
             <div id="calendar"></div>
         </div>
@@ -29,6 +29,9 @@
         document.addEventListener('DOMContentLoaded', function () {
             const calendarEl = document.getElementById('calendar');
 
+            const bno = "[[${bno}]]";
+            const bname = "[[${bname}]]";
+
             const calendar = new FullCalendar.Calendar(calendarEl,{
                 plugins: ['interaction', 'dayGrid', 'timeGrid'],
                 header: {
@@ -36,14 +39,18 @@
                     center: 'title',
                     right: ''
                 },
+                titleFormat : function(date) { // title 설정
+                    return bname + " 회의실 예약목록";
+                },
                 editable: false,
                 events: function (date, callback, error) {
                     $.ajax({
-                        url:'reserve/list',
+                        url:'/reserve/list',
                         type:'get',
                         data:{
                             start: date['startStr'],
-                            end: date['endStr']
+                            end: date['endStr'],
+                            bno: bno
                         },
                         success:function (list){
                             calendar.removeAllEvents();
@@ -58,12 +65,15 @@
                         }
                     });
                 },
+                height: 'parent',
                 defaultView: 'timeGridWeek',
                 defaultDate: new Date(),
                 eventLimit: true,
                 locale: 'ko',
                 eventColor:'#51bacf',
-                eventTextColor: '#fff'
+                eventTextColor: '#fff',
+                minTime: '09:00:00',
+                maxTime: '18:00:00'
             });
             calendar.render();
         });

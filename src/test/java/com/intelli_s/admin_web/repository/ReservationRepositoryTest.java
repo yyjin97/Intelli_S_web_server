@@ -20,7 +20,7 @@ class ReservationRepositoryTest {
         String day_s = "2020/10/04";
         String day_e = "2020/10/11";
 
-        log.info(repository.getListByDay(day_s, day_e));
+        log.info(repository.getListByDay(day_s, day_e, 1));
     }
 
     @Test

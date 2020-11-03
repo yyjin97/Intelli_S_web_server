@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <th:block th:fragment="navbarFragment">
     <header id="header">
         <div class="container">
 
+            <a th:href="@{/}">
             <div id="logo" class="pull-left">
-                <a th:href="@{/}"><img th:src="@{/img/logo-nav.png}"/></a>
-                <!-- Uncomment below if you prefer to use a text image -->
-<!--                <h1><a href="#hero">Bell</a></h1>-->
+                    <img th:src="@{/img/logo-nav.png}"/>
             </div>
+            </a>
 
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a th:href="@{/notice/list/{bno} (bno=${bno})}">Notice</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li class="menu-has-children"><a href="">Drop Down</a>
+                    <li class="menu-has-children"><a th:href="@{/notice/list/0}">공지사항</a>
                         <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="menu-has-children"><a href="#">Drop Down 2</a>
-                                <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
-                            <li><a href="#">Drop Down 5</a></li>
+                            <li><a th:href="@{/notice/list/0}">형남공학관</a></li>
+                            <li><a th:href="@{/notice/list/1}">문화관</a></li>
+                            <li><a th:href="@{/notice/list/2}">중앙도서관</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li class="menu-has-children"><a th:href="@{/reserve/0}">예약목록</a>
+                        <ul>
+                            <li><a th:href="@{/reserve/0}">형남공학관</a></li>
+                            <li><a th:href="@{/reserve/1}">문화관</a></li>
+                            <li><a th:href="@{/reserve/2}">중앙도서관</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/notification/send}">알림전송</a></li>
                 </ul>
             </nav>
             <!-- #nav-menu-container -->
 
             <nav class="nav social-nav pull-right d-none d-lg-inline">
-                <a href="#"><i class="fa fa-github"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-envelope"></i></a>
+                <div class="navbar-nav ml-auto ml-md-0">
+                    <form id="logoutForm" method="post" th:action="@{/logout}">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" onclick="document.getElementById('logoutForm').submit();"><i class="fa fa-user fa-fw mr-1"></i>[[${#authentication.principal.userVO.userName}]]</a>
+                    </form>
+                    <div sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" type="button" th:href="@{/login}"><i class="fa fa-user mr-1"></i>Login</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>

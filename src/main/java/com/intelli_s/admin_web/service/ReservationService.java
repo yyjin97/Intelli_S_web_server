@@ -1,13 +1,14 @@
 package com.intelli_s.admin_web.service;
 
-import com.intelli_s.admin_web.domain.AppReserveDTO;
 import com.intelli_s.admin_web.domain.ReservationVO;
 
 import java.util.List;
 
 public interface ReservationService {
 
-    List<ReservationVO> getListByDay(String start, String end);
+    String getBuildingNameByBno(Integer bno);
+
+    List<ReservationVO> getListByDay(String start, String end, int bno);
 
     List<ReservationVO> getListByDayBno(String day, Integer bno);
 

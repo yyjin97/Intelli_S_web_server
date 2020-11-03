@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<th:block layout:fragment="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border border-secondary rounded mt-5 mb-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3>
+                        <h5 class="text-center font-weight-light">[[${error}]]</h5>
+                        <h5 class="text-center font-weight-light">[[${logout}]]</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" th:action="@{/login}">
+                            <div class="form-group">
+                                <label class="small mb-1" for="username">Email</label>
+                                <input class="form-control py-2" id="username" name="username" type="email" placeholder="Enter email address" />
+                            </div>
+                            <div class="form-group">
+                                <label class="small mb-1" for="password">Password</label>
+                                <input class="form-control py-2" id="password" name="password" type="password" placeholder="Enter password" />
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" id="remember-me" name="remember-me" type="checkbox"/>
+                                    <label class="custom-control-label" for="remember-me">Remember password</label>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <a class="small" href="password.html">Forgot Password?</a>
+                                <input class="btn btn-primary" type="submit" value="Login">
+                            </div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                        </form>
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="small"><a href="board/register.html">Need an account? Sign up!</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</html>

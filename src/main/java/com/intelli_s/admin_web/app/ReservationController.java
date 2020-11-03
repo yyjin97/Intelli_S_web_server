@@ -29,6 +29,8 @@ public class ReservationController {
     @GetMapping(value = "/lookup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AppReserveDTO>> appLookup(@RequestParam String day, @RequestParam Integer bno) {
 
+        day = day.replace('/', '-');
+
         List<ReservationVO> list = service.getListByDayBno(day, bno);
         List<AppReserveDTO> appList = new ArrayList<>();
 
@@ -41,7 +43,7 @@ public class ReservationController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Map<String, FullCalendarDTO>> getCalendar(@RequestParam("start") String start, @RequestParam("end") String end) {
+    public ResponseEntity<Map<String, FullCalendarDTO>> getCalendar(@RequestParam("start") String start, @RequestParam("end") String end, @RequestParam("bno") Integer bno) {
         if(start.length() > 10) {
             start = start.substring(0, 10);
         }
@@ -51,11 +53,11 @@ public class ReservationController {
         start = start.replace('-', '/');
         end = end.replace('-','/');
 
-        List<ReservationVO> list = service.getListByDay(start, end);
+        List<ReservationVO> list = service.getListByDay(start, end, bno);
         Map<String, FullCalendarDTO> map = new HashMap<>();
         Integer cnt = 1;
         for(ReservationVO e : list){
-            map.put(cnt.toString(), new FullCalendarDTO(e.getTitle()+" - "+e.getUserId(), e.getDay()+"T"+e.getStart(), e.getDay()+"T"+e.getEnd(), e.getAllDay().toString()));
+            map.put(cnt.toString(), new FullCalendarDTO(e.getTitle()+" - " + e.getUserId(), e.getDay()+"T"+e.getStart(), e.getDay()+"T"+e.getEnd(), e.getAllDay().toString()));
             cnt++;
         }
 

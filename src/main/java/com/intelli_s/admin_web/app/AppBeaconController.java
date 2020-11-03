@@ -8,10 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/app/beacon/")
@@ -26,8 +23,8 @@ public class AppBeaconController {
         this.handler = handler;
     }
 
-    @PostMapping(value = "/open", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RoomVO> openRoom(@RequestBody BeaconVO beacon) {
+    @PostMapping(value = "/open/{bno}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RoomVO> openRoom(@RequestBody BeaconVO beacon, @PathVariable("bno") int bno) {
 
         if(beacon == null) {
             log.info("beacon data is NULL!");
@@ -36,6 +33,8 @@ public class AppBeaconController {
 
         int major = beacon.getMajor();
         int minor = beacon.getMinor();
+
+        minor += bno;
 
         RoomVO room = service.getRoom(major, minor);
         if(room == null) {

@@ -4,18 +4,48 @@ import lombok.extern.log4j.Log4j2;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
+@Component
 @Log4j2
 public class PushNotifications {
 
-    public static String NotificationJson() throws JSONException {
-        LocalDate localDate = LocalDate.now();
+    @Autowired
+    PushNotificationService service;
 
-        String sampleData[] = {"dWKiPqdsSmGVpfvTKm9tzj:APA91bHYrf-3XVIkQDiPNomBU5bhPBXPj4E4fKwZmA2CxHGJSyn6rvk9PHHiJRiGkjKHNuXxXb0U72wmwZUtjT1NM2eXxPHlkdhbJizXpqBDgnF0P8HFYUeZZgzjcNMY4yVZ9HSeRJ2G"};
+    public Boolean send(String title, String content) {
+        String notifications = PushNotifications.NotificationJson(title, content);
+
+        HttpEntity<String> request = new HttpEntity<>(notifications);
+
+        CompletableFuture<String> pushNotification = service.send(request);
+        CompletableFuture.allOf(pushNotification).join();
+
+        try{
+            String response = pushNotification.get();
+            log.info(response);
+            return true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static String NotificationJson(String title, String content) throws JSONException {
+
+        String sampleData[] = {"dWKiPqdsSmGVpfvTKm9tzj:APA91bExCRlVjl2pJHPHKusRquet0nvvRdceO0gRrGS0zzyt7nKm0DcEdJtMUSOZbKaP-7t8yx6ZCWUJQ19W4dT5DxOrkB0o4vEMH3ZqTb3fLu8rGNQO-OPPyYhC6o0OAsAVmG3GBE3q"};
 
         JSONObject body = new JSONObject();
 
@@ -32,8 +62,8 @@ public class PushNotifications {
         body.put("registration_ids", array);
 
         JSONObject notification = new JSONObject();
-        notification.put("title", "Intelli_S");
-        notification.put("body", "tempBody");
+        notification.put("title", title);
+        notification.put("body", content);
 
         body.put("notification", notification);
 

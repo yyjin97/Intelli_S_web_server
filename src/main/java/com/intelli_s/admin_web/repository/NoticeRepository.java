@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface NoticeRepository extends Repository<NoticeVO, Integer> {
 
+    @Query("SELECT notice FROM NoticeVO notice WHERE notice.bno = :bno")
+    List<NoticeVO> getList(int bno);
+
     @Query(value = "SELECT * FROM notice WHERE notice.bno = :bno ORDER BY notice.id DESC LIMIT :start, :amount", nativeQuery = true)
     List<NoticeVO> getListByBno(int bno, int start, int amount);
 

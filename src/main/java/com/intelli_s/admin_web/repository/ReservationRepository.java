@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface ReservationRepository extends Repository<ReservationVO, Integer> {
 
-    @Query("SELECT reserve FROM ReservationVO reserve WHERE reserve.day >= :day_s and reserve.day < :day_e")
-    List<ReservationVO> getListByDay(String day_s, String day_e);
+    @Query("SELECT reserve FROM ReservationVO reserve WHERE reserve.day >= :day_s and reserve.day < :day_e and reserve.bno = :bno")
+    List<ReservationVO> getListByDay(String day_s, String day_e, int bno);
 
     @Query("SELECT reserve FROM ReservationVO reserve WHERE reserve.day = :day and reserve.bno = :bno")
     List<ReservationVO> getListByDayBno(String day, Integer bno);

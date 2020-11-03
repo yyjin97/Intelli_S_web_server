@@ -31,6 +31,13 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
+    public List<NoticeVO> getAllList(int bno) {
+        log.info("get notice list with #" + bno);
+
+        return repository.getList(bno);
+    }
+
+    @Override
     public List<NoticeVO> getList(Criteria cri, int bno) {
         int amount = cri.getAmount();
         int start = (cri.getPageNum() - 1) * amount;

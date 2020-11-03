@@ -12,14 +12,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-public class NotificationController {
+public class NotificationControllerr {
 
     @Autowired
     PushNotificationService service;
 
     @GetMapping("/send")
     public ResponseEntity<String> send() throws JSONException, InterruptedException {
-        String notifications = PushNotifications.NotificationJson();
+        String notifications = PushNotifications.NotificationJson("Intellis", "알림입니다");
 
         HttpEntity<String> request = new HttpEntity<>(notifications);
 

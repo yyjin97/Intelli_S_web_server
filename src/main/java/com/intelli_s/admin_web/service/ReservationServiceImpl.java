@@ -1,6 +1,7 @@
 package com.intelli_s.admin_web.service;
 
 import com.intelli_s.admin_web.domain.ReservationVO;
+import com.intelli_s.admin_web.repository.BuildingRepository;
 import com.intelli_s.admin_web.repository.ReservationRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -13,15 +14,22 @@ import java.util.List;
 public class ReservationServiceImpl implements ReservationService{
 
     private final ReservationRepository repository;
+    private final BuildingRepository buildingRepository;
 
-    public ReservationServiceImpl(ReservationRepository repository) {
+    public ReservationServiceImpl(ReservationRepository repository, BuildingRepository buildingRepository) {
         this.repository = repository;
+        this.buildingRepository = buildingRepository;
     }
 
     @Override
-    public List<ReservationVO> getListByDay(String start, String end) {
+    public String getBuildingNameByBno(Integer bno) {
+        return buildingRepository.getByBno(bno).getName();
+    }
+
+    @Override
+    public List<ReservationVO> getListByDay(String start, String end, int bno) {
         log.info("Get reservation " + start + "~" + end);
-        return repository.getListByDay(start, end);
+        return repository.getListByDay(start, end, bno);
     }
 
     @Override

@@ -9,6 +9,8 @@ public interface NoticeService {
 
     NoticeVO get(int id);
 
+    List<NoticeVO> getAllList(int bno);
+
     List<NoticeVO> getList(Criteria cri, int bno);
 
     int getCntByBno(int bno);

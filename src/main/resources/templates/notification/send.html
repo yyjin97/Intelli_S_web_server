@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<th:block layout:fragment="content">
+    <div class="container">
+        <div class="card">
+            <div class="mt-5">
+                <h2 class="text-center">
+                    Send Notification
+                </h2>
+            </div>
+            <form id="actionForm" class="mb-lg-5" role="form" method="post" th:action="@{/notification/send}">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="Intelli_S">
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea name="content" class="form-control" rows="10" placeholder="Enter content"></textarea>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button id="submitBtn" type="button" class="btn">Submit</button>
+                    <a type="button" class="btn" th:href="@{/}">Cancel</a>
+                </div>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            </form>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="script">
+    <script>
+        $(document).ready(function () {
+            const actionForm = $("#actionForm");
+            let msg = "[[${msg}]]";
+
+            if(msg != "") {
+                alert(msg);
+            }
+
+            $("#submitBtn").on("click", function (e) {
+                const title = actionForm.find("input[name='title']").val();
+                const content = actionForm.find("textarea[name='content']").val();
+
+                if(title == "" || content == "") {
+                    alert("알림의 제목과 내용을 입력해주세요 !");
+                    return;
+                }
+
+                actionForm.submit();
+            })
+        })
+    </script>
+</th:block>
+</html>
