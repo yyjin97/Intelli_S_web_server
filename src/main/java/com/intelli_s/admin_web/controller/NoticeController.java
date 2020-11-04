@@ -5,6 +5,7 @@ import com.intelli_s.admin_web.domain.NoticeVO;
 import com.intelli_s.admin_web.domain.PageDTO;
 import com.intelli_s.admin_web.service.NoticeService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,7 @@ public class NoticeController {
         return "/notice/get";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/register/{bno}")
     public String getRegister(@PathVariable("bno") int bno, Model model) {
         log.info("get register page #" + bno);
@@ -53,6 +55,7 @@ public class NoticeController {
         return "/notice/register";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/register")
     public String postRegister(NoticeVO notice, RedirectAttributes rttr) {
         noticeService.register(notice);

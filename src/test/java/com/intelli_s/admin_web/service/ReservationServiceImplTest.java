@@ -16,6 +16,6 @@ class ReservationServiceImplTest {
 
     @Test
     public void testGet(){
-        log.info(service.getListByDay("2020/10/04", "2020/10/10", 1));
+        log.info(service.getListByDay("2020/10/04", "2020/10/10", 1, 0));
     }
 }

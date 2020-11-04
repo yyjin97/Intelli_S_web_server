@@ -8,11 +8,11 @@ public interface ReservationService {
 
     String getBuildingNameByBno(Integer bno);
 
-    List<ReservationVO> getListByDay(String start, String end, int bno);
+    List<ReservationVO> getListByDay(String start, String end, int bno, int rno);
 
     List<ReservationVO> getListByDayBno(String day, Integer bno);
 
-    Boolean checkReservation(String day, String start, String end);
+    Boolean checkReservation(String day, String start, String end, int bno, int rno);
 
     int getCntById(Integer id);
 

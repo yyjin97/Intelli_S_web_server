@@ -30,7 +30,9 @@
             const calendarEl = document.getElementById('calendar');
 
             const bno = "[[${bno}]]";
+            const rno = "[[${rno}]]";
             const bname = "[[${bname}]]";
+            const rname = "[[${rname}]]";
 
             const calendar = new FullCalendar.Calendar(calendarEl,{
                 plugins: ['interaction', 'dayGrid', 'timeGrid'],
@@ -40,7 +42,7 @@
                     right: ''
                 },
                 titleFormat : function(date) { // title 설정
-                    return bname + " 회의실 예약목록";
+                    return bname + " " + rname + " 예약목록";
                 },
                 editable: false,
                 events: function (date, callback, error) {
@@ -50,7 +52,8 @@
                         data:{
                             start: date['startStr'],
                             end: date['endStr'],
-                            bno: bno
+                            bno: bno,
+                            rno: rno
                         },
                         success:function (list){
                             calendar.removeAllEvents();

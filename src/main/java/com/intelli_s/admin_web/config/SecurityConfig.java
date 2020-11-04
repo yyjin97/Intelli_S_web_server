@@ -48,6 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .key("Intelli_S")
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(7 * 24 * 60 * 60);
+
+        http.csrf().disable();
     }
 
     @Override

@@ -22,11 +22,29 @@
                             <li><a th:href="@{/notice/list/2}">중앙도서관</a></li>
                         </ul>
                     </li>
-                    <li class="menu-has-children"><a th:href="@{/reserve/0}">예약목록</a>
+                    <li class="menu-has-children"><a th:href="@{/reserve/0/0}">예약목록</a>
                         <ul>
-                            <li><a th:href="@{/reserve/0}">형남공학관</a></li>
-                            <li><a th:href="@{/reserve/1}">문화관</a></li>
-                            <li><a th:href="@{/reserve/2}">중앙도서관</a></li>
+                            <li class="menu-has-children"><a th:href="@{/reserve/0/0}">형남공학관</a>
+                                <ul>
+                                    <li><a th:href="@{/reserve/0/0}">424호</a></li>
+                                    <li><a th:href="@{/reserve/0/1}">522호</a></li>
+                                    <li><a th:href="@{/reserve/0/2}">525호</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-has-children"><a th:href="@{/reserve/1/0}">문화관</a>
+                                <ul>
+                                    <li><a th:href="@{/reserve/1/0}">소프트웨어 실습실</a></li>
+                                    <li><a th:href="@{/reserve/1/1}">하드웨어 실습실</a></li>
+                                    <li><a th:href="@{/reserve/1/2}">541호</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-has-children"><a th:href="@{/reserve/2/0}">중앙도서관</a>
+                                <ul>
+                                    <li><a th:href="@{/reserve/2/0}">101호</a></li>
+                                    <li><a th:href="@{/reserve/2/1}">102호</a></li>
+                                    <li><a th:href="@{/reserve/2/2}">401호</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li><a th:href="@{/notification/send}">알림전송</a></li>

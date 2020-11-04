@@ -27,9 +27,9 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public List<ReservationVO> getListByDay(String start, String end, int bno) {
+    public List<ReservationVO> getListByDay(String start, String end, int bno, int rno) {
         log.info("Get reservation " + start + "~" + end);
-        return repository.getListByDay(start, end, bno);
+        return repository.getListByDay(start, end, bno, rno);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class ReservationServiceImpl implements ReservationService{
 
     //return 값이 true 이면 이미 예약이 존재, false 이면 예약이 없는 경우
     @Override
-    public Boolean checkReservation(String day, String start, String end) {
+    public Boolean checkReservation(String day, String start, String end, int bno, int rno) {
         log.info("Check reservation " + day + " " + start + " ~ " + end);
-        return repository.getCntByDay(day, start, end) > 0;
+        return repository.getCntByDay(day, start, end, bno, rno) > 0;
     }
 
     @Override

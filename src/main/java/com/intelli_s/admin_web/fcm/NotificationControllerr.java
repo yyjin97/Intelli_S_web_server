@@ -1,5 +1,6 @@
 package com.intelli_s.admin_web.fcm;
 
+import com.intelli_s.admin_web.service.LogService;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 public class NotificationControllerr {
 
     @Autowired
-    PushNotificationService service;
+    private PushNotificationService service;
 
     @GetMapping("/send")
     public ResponseEntity<String> send() throws JSONException, InterruptedException {

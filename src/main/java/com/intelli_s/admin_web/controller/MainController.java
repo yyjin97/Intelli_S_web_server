@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 public class MainController {
 
@@ -30,13 +32,16 @@ public class MainController {
         return "socket";
     }
 
-    @GetMapping("/reserve/{bno}")
-    public String reserve(@PathVariable("bno") Integer bno, Model model) {
+    @GetMapping("/reserve/{bno}/{rno}")
+    public String reserve(@PathVariable("bno") Integer bno, @PathVariable("rno") Integer rno, Model model) {
 
+        String rName[] = {"424호", "522호", "525호", "소프트웨어 실습실", "하드웨어 실습실", "541호", "101호", "102호", "401호"};
         String bName = reservationService.getBuildingNameByBno(bno);
 
         model.addAttribute("bno", bno);
         model.addAttribute("bname", bName);
+        model.addAttribute("rno", rno);
+        model.addAttribute("rname", rName[bno * 3 + rno]);
 
         return "reserve/calendar";
     }
