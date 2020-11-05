@@ -3,6 +3,7 @@ package com.intelli_s.admin_web.controller;
 import com.intelli_s.admin_web.domain.Criteria;
 import com.intelli_s.admin_web.domain.NoticeVO;
 import com.intelli_s.admin_web.domain.PageDTO;
+import com.intelli_s.admin_web.repository.BuildingRepository;
 import com.intelli_s.admin_web.service.NoticeService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,16 +18,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class NoticeController {
 
     private final NoticeService noticeService;
+    private final BuildingRepository repository;
 
-    public NoticeController(NoticeService noticeService) {
+    public NoticeController(NoticeService noticeService, BuildingRepository repository) {
         this.noticeService = noticeService;
+        this.repository = repository;
     }
 
     @GetMapping("/list/{bno}")
     public String list(@PathVariable("bno") int bno, @ModelAttribute("cri") Criteria cri, @ModelAttribute("msg") String msg, Model model) {
         log.info("get notice list of building #" + bno);
 
+        String bName = repository.getByBno(bno).getName();
+
         model.addAttribute("bno", bno);
+        model.addAttribute("bname", bName);
         model.addAttribute("list", noticeService.getList(cri, bno));
         model.addAttribute("pageInfo", new PageDTO(cri, noticeService.getCntByBno(bno)));
 

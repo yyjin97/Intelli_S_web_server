@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label for="writer">Writer</label>
-                        <input class="form-control" id="writer" name="writer">
+                        <input class="form-control" id="writer" name="writer" th:value="${#authentication.principal.username}" readonly>
                     </div>
                 </div>
                 <div class="card-footer">

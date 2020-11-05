@@ -35,7 +35,7 @@ public class MainController {
     @GetMapping("/reserve/{bno}/{rno}")
     public String reserve(@PathVariable("bno") Integer bno, @PathVariable("rno") Integer rno, Model model) {
 
-        String rName[] = {"424호", "522호", "525호", "소프트웨어 실습실", "하드웨어 실습실", "541호", "101호", "102호", "401호"};
+        String rName[] = {"424호", "522호", "1101호", "소프트웨어 실습실", "하드웨어 실습실", "541호", "101호", "102호", "401호"};
         String bName = reservationService.getBuildingNameByBno(bno);
 
         model.addAttribute("bno", bno);

@@ -18,7 +18,7 @@ public interface ReservationRepository extends Repository<ReservationVO, Integer
     List<ReservationVO> getListByDayBno(String day, Integer bno);
 
     @Query("SELECT COUNT(reserve) FROM ReservationVO reserve WHERE reserve.day = :day and reserve.bno = :bno and reserve.rno = :rno " +
-            "and ((reserve.start <= :start and reserve.end > :start) or (reserve.start > :end and reserve.end >= :end))")
+            "and ((reserve.start <= :start and reserve.end > :start) or (reserve.start < :end and reserve.end >= :end))")
     int getCntByDay(String day, String start, String end, int bno, int rno);
 
     @Query("SELECT COUNT(reserve) FROM ReservationVO reserve WHERE reserve.reserveId = :id")

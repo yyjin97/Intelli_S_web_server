@@ -72,13 +72,19 @@ public class ReservationController {
 
         HashMap<String, String> map = new HashMap<>();
 
+        if(reserve.getStart().compareTo("09:00:00") < 0 || reserve.getEnd().compareTo("17:00:00") > 0) {
+            log.info("예약이 불가한 요청입니다.");
+            map.put("ret", "fail");
+            return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+        }
+
         if(service.checkReservation(reserve.getDay(), reserve.getStart(), reserve.getEnd(), reserve.getBno(), reserve.getRno())) {
             log.info("이미 예약이 존재합니다 " + reserve.getDay() + " " + reserve.getStart() + " ~ " + reserve.getEnd());
             map.put("ret", "fail");
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
 
-        reserve.setUserId("TempUser!"); //////수정필요!!!!!!!!!!
+        reserve.setUserId("user"); //////수정필요!!!!!!!!!!
         reserve.setReserveId(0);
         service.register(reserve);
         log.info(reserve.getDay() + " " + reserve.getStart() + " ~ " + reserve.getEnd() + " 예약 완료!");

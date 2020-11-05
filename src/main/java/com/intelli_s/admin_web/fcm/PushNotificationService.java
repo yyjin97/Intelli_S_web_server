@@ -22,7 +22,7 @@ public class PushNotificationService {
         ArrayList<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
 
         interceptors.add(new RequestInterceptor("Authorization", "key=" + serverKey));
-        interceptors.add(new RequestInterceptor("Content-Type", "application/json; UTF-8 "));
+        interceptors.add(new RequestInterceptor("Content-Type", "application/json; charset=utf-8"));
         restTemplate.setInterceptors(interceptors);
 
         String response = restTemplate.postForObject(API_URL, entity, String.class);
