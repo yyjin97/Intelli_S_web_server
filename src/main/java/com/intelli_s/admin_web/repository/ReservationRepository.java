@@ -1,12 +1,10 @@
 package com.intelli_s.admin_web.repository;
 
-import com.intelli_s.admin_web.domain.AppReserveDTO;
 import com.intelli_s.admin_web.domain.ReservationVO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 public interface ReservationRepository extends Repository<ReservationVO, Integer> {

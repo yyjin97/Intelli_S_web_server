@@ -42,7 +42,7 @@ public class PushNotifications {
 
     public static String NotificationJson(String title, String content) throws JSONException {
 
-        String sampleData[] = {"dWKiPqdsSmGVpfvTKm9tzj:APA91bExCRlVjl2pJHPHKusRquet0nvvRdceO0gRrGS0zzyt7nKm0DcEdJtMUSOZbKaP-7t8yx6ZCWUJQ19W4dT5DxOrkB0o4vEMH3ZqTb3fLu8rGNQO-OPPyYhC6o0OAsAVmG3GBE3q",
+        String sampleData[] = {"dWKiPqdsSmGVpfvTKm9tzj:APA91bGbSeUGId3YBaPjvVVYdPECab8-gmmGnPV7Q9ukGIi6lr2QpiasGPbsaa5F93ReTFGxVgNhvkKvnY3hRV1R5jkKC13O4e2ooNVMLBTFm3DoSxK2MNBzJKg6MpSYbtGDLvFetc0g",
                 "eac_y11zQg2U9lwclS2oMC:APA91bHF81qEXZIaIKubnpX_Vc6lOXyKHhr6FcNOVrjBr8J1tCq-Gbupv6FKPLC63_bIs-3_w6_Ae6RFtzNODuXW4zu-u-IfR-txMRInTqe99VbG9RzzZDo9xGit9Cjk9Ol6TD1AGrcw"};
 
         JSONObject body = new JSONObject();
