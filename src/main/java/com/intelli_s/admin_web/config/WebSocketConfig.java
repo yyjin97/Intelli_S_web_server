@@ -21,3 +21,5 @@ public class WebSocketConfig implements WebSocketConfigurer {
         webSocketHandlerRegistry.addHandler(handler, "/rpi").setAllowedOrigins("*");
     }
 }
+
+

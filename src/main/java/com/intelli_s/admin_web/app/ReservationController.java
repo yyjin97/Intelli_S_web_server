@@ -5,11 +5,9 @@ import com.intelli_s.admin_web.domain.FullCalendarDTO;
 import com.intelli_s.admin_web.domain.ReservationVO;
 import com.intelli_s.admin_web.service.ReservationService;
 import lombok.extern.log4j.Log4j2;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -84,7 +82,7 @@ public class ReservationController {
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
 
-        reserve.setUserId("user"); //////수정필요!!!!!!!!!!
+        reserve.setUserId("user");
         reserve.setReserveId(0);
         service.register(reserve);
         log.info(reserve.getDay() + " " + reserve.getStart() + " ~ " + reserve.getEnd() + " 예약 완료!");
